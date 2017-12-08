@@ -11,7 +11,9 @@ import com.nationalcharge.model.NationalChargePointRegistry;
 
 @Component
 public interface NationalChargePointRegistryRepository extends CrudRepository<NationalChargePointRegistry, Integer> {
-
-    @Query(value="SELECT min(sqrt((((latitude-:latitude)*(latitude-:latitude))+((longitude-:longitude)*(longitude-:longitude))))) as minDistance, a.* FROM world.national_charge_point_registry a", nativeQuery = true)
+    
+    String FETCH_MINIMUM_DISTANCE = "SELECT min(sqrt((((latitude-:latitude)*(latitude-:latitude))+((longitude-:longitude)*(longitude-:longitude))))) as minDistance, a.* FROM world.national_charge_point_registry a"; 
+    
+    @Query(value=FETCH_MINIMUM_DISTANCE, nativeQuery = true)
     List<NationalChargePointRegistry> findNearestChargingPoint(@Param("latitude") double latitude,@Param("longitude")double longitude);
 }

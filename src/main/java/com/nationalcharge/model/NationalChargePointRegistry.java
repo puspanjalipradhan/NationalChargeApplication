@@ -1776,7 +1776,7 @@ public class NationalChargePointRegistry {
     }
 
 
-    protected NationalChargePointRegistry() {
+    public NationalChargePointRegistry() {
     }
     
 }
