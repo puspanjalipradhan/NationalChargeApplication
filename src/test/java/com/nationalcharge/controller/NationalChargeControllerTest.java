@@ -33,7 +33,9 @@ public class NationalChargeControllerTest {
     
     @Before
     public void setUp(){
-        location = new Location(10,10);
+        location = new Location();
+        location.setLatitude(10);
+        location.setLongitude(10);
     }
     
     @Test

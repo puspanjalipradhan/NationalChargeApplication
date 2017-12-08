@@ -18,6 +18,7 @@ import com.nationalcharge.repository.NationalChargePointRegistryRepository;
 @RequestMapping(value="/chargingstation")
 public class NationalChargeController {
     
+    private static final String DELETION_WAS_SUCCESSFUL = "Deletion was successful";
     private static final String THE_INSERTION_FAILED = "The insertion failed";
     private static final String THE_INSERTION_IS_DONE_SUCCESSFULLY = "The insertion is done successfully";
     @Autowired
@@ -48,9 +49,9 @@ public class NationalChargeController {
     
     
     @RequestMapping(value="/deleteChargingStation/{id}",method=RequestMethod.GET)
-    public ResponseEntity<NationalChargePointRegistry> deleteChargingById(@PathVariable("id") Integer id) {
+    public ResponseEntity<String> deleteChargingById(@PathVariable("id") Integer id) {
        repository.delete(id);
-       return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+       return new ResponseEntity<String>(DELETION_WAS_SUCCESSFUL,HttpStatus.BAD_REQUEST);
     }    
 
     
